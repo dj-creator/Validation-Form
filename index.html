@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Form</title>
+    <style>
+      body {
+        background-color: lightblue;
+      }
+
+      fieldset {
+        margin: 0 auto;
+        max-width: 500px;
+        border: solid black;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+
+      input[type="submit"] {
+        margin-top: 20px;
+      }
+
+      .error {
+        color: red;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contact Us</h1>
+    <form id="contact-form">
+      <fieldset>
+        <legend>Contact Information</legend>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <span id="name-error" class="error"></span>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span id="email-error" class="error"></span>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        <span id="phone-error" class="error"></span>
+
+        <label for="credit-card">Credit Card Number:</label>
+        <input type="text" id="credit-card" name="credit-card" pattern="[0-9]{16}" required>
+        <span id="credit-card-error" class="error"></span>
+        <br><br>
+        <img src="./Major-Credit-Card-Logo-PNG-Transparent-Image.png" alt="k" width="500px" height="200px">
+        <br><br>
+        <input type="submit" value="Submit" >
+      </fieldset>
+
+    </form>
+
+    <script>
+      function validateForm(event) {
+        event.preventDefault();
+
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const phoneInput = document.getElementById("phone");
+        const creditCardInput = document.getElementById("credit-card");
+
+        const nameError = document.getElementById("name-error");
+        const emailError = document.getElementById("email-error");
+        const phoneError = document.getElementById("phone-error");
+        const creditCardError = document.getElementById("credit-card-error");
+
+        let isValid = true;
+
+        // Check if name input is empty or just spaces
+        if (nameInput.value.trim() === "") {
+          nameError.textContent = "Name is required";
+          isValid = false;
+        } else {
+          nameError.textContent = "";
+        }
+
+        // Check if email input is empty or just spaces
+        if (emailInput.value.trim() === "") {
+          emailError.textContent = "Email is required";
+          isValid = false;
+        } else {
+          emailError.textContent = "";
+        }
+
+        // Check if phone input is empty or just spaces
+        if (phoneInput.value.trim() === "") {
+          phoneError.textContent = "Phone number is required";
+          isValid = false;
+        } else {
+          phoneError.textContent = "";
+        }
+
+        // Check if credit card input is empty or just spaces
+        if (creditCardInput.value.trim() === "") {
+          creditCardError.textContent = "Credit card number is required";
+          isValid = false;
+        } else {
+          creditCardError.textContent = "";
+        }
+
+        if (isValid) {
+          // Submit the form if all inputs are valid
+          event.target.submit();
+        }
+      }
+
+      
+
